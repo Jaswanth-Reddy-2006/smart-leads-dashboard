@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: leads_mongo_dev
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: leads_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_dev_data:/data/db
+
+volumes:
+  mongo_dev_data:
