@@ -26,19 +26,19 @@ jobs:
 
     - name: Configure Docker
       run: |
-        gcloud auth configure-docker --quiet
+        gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
 
     - name: Build and Push Docker Image
       run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest ./server
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest
+        docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/smart-leads-repo/smart-leads-dashboard-api:latest ./server
+        docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/smart-leads-repo/smart-leads-dashboard-api:latest
 
     - name: Deploy to Cloud Run
       id: deploy
       uses: google-github-actions/deploy-cloudrun@v2
       with:
         service: smart-leads-dashboard-api
-        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest
+        image: us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/smart-leads-repo/smart-leads-dashboard-api:latest
         region: us-central1
         flags: --allow-unauthenticated
         env_vars: |
