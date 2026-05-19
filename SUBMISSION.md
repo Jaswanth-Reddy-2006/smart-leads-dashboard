@@ -12,6 +12,8 @@ This document compiles all the required materials and information for the **Smar
 - **GitHub Profile**: [https://github.com/Jaswanth-Reddy-2006](https://github.com/Jaswanth-Reddy-2006)
 - **LinkedIn Profile**: [https://www.linkedin.com/in/jasreaug/](https://www.linkedin.com/in/jasreaug/)
 - **Resume File**: [`R_Jaswanth_Reddy_Resume.pdf`](./R_Jaswanth_Reddy_Resume.pdf) (included in the root of the repository)
+- **Submission PDF Portfolio**: [`SUBMISSION.pdf`](./SUBMISSION.pdf) (compiled PDF report detailing architecture, tech stack, and setup)
+
 
 ---
 
