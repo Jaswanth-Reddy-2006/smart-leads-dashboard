@@ -7,6 +7,8 @@ A production-grade Lead Management System built with the MERN stack and TypeScri
 - **Frontend Application**: [https://smart-leads-dashboard-jaswanth.netlify.app](https://smart-leads-dashboard-jaswanth.netlify.app)
 - **Backend API**: [https://smart-leads-dashboard-api-qiwnf6awba-uc.a.run.app](https://smart-leads-dashboard-api-qiwnf6awba-uc.a.run.app)
 - **API Health Check**: [https://smart-leads-dashboard-api-qiwnf6awba-uc.a.run.app/health](https://smart-leads-dashboard-api-qiwnf6awba-uc.a.run.app/health)
+- **Demo Video Walkthrough**: [Google Drive Video Link](https://drive.google.com/file/d/1W7rokBLbUb6SYJEtRF5TSqm6hiA_DMCq/view?usp=sharing)
+
 
 
 ## Tech Stack
