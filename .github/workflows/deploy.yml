@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-backend:
+    name: Deploy Backend to Google Cloud Run
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Google Auth
+      id: auth
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Configure Docker
+      run: |
+        gcloud auth configure-docker --quiet
+
+    - name: Build and Push Docker Image
+      run: |
+        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest ./server
+        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest
+
+    - name: Deploy to Cloud Run
+      id: deploy
+      uses: google-github-actions/deploy-cloudrun@v2
+      with:
+        service: smart-leads-dashboard-api
+        image: gcr.io/${{ secrets.GCP_PROJECT_ID }}/smart-leads-dashboard-api:latest
+        region: us-central1
+        flags: --allow-unauthenticated
+        env_vars: |
+          NODE_ENV=production
+          PORT=5000
+          MONGO_URI=${{ secrets.MONGO_URI }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          JWT_EXPIRES_IN=7d
+          CORS_ORIGIN=https://smart-leads-dashboard-jaswanth.netlify.app
+
+    - name: Show Output URL
+      run: |
+        echo "Backend is live at: ${{ steps.deploy.outputs.url }}"
