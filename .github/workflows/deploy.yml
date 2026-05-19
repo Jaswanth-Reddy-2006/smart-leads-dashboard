@@ -43,7 +43,6 @@ jobs:
         flags: --allow-unauthenticated
         env_vars: |
           NODE_ENV=production
-          PORT=5000
           MONGO_URI=${{ secrets.MONGO_URI }}
           JWT_SECRET=${{ secrets.JWT_SECRET }}
           JWT_EXPIRES_IN=7d
